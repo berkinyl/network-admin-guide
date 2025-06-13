@@ -1,8 +1,10 @@
-# 🚀 KefoSoft Admin Portal – Final Design Project
+<h1 align="left">
+  <img src="images/cat.png" width="32" style="vertical-align: middle; margin-right: 10px;" />
+  KefoSoft Admin Portal – Final Design Project
+</h1>
+
 
 **KefoSoft Admin Portal** is a structured, multi-page HTML-based troubleshooting guide designed for network administrators and security engineers. It provides detailed explanations and visual support for common issues across all OSI layers, from physical cabling problems to Layer 7 DNS spoofing attacks.
-
-![Favicon](network-admin-guide/images/cat.png)
 
 ---
 
@@ -73,9 +75,8 @@ network-admin-guide/
 
 1. Clone or download the repository:
    ```bash
-   git clone https://github.com/yourusername/Network-Admin
+   git clone https://github.com/berkinyl/network-admin-guide
    ```
-   *(Replace with your actual GitHub username if needed.)*
 
 2. Open the `network-admin-guide/index.html` file in your web browser.
 
@@ -92,7 +93,7 @@ To publish this project online:
 3. Choose the root folder of the `main` branch  
 4. GitHub will host your site at:  
    ```
-   https://yourusername.github.io/Network-Admin/
+   https://berkinyl.github.io/network-admin-guide
    ```
 
 ---

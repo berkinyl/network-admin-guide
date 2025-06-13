@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+        <!-- Immediately inside your <body>, at the very top: -->
+        <header class="site-header">
+          <a href="index.html" class="header-link">
+            <div class="site-title">KEFOSOFT</div>
+            <img src="images/cat.png" alt="KefoSoft Logo" class="logo-img">
+          </a>
+
+            <!-- In your <head> -->
+        <style>
+          :root {
+            --hdr-bg: rgba(30,30,30,0.95);
+            --hdr-radius: 0.5rem;
+            --primary: #00c4cc;
+            --accent: #17a2b8;
+            --text-light: #f8f9fa;
+          }
+
+          /* HEADER STYLES */
+          .site-header {
+            background: var(--hdr-bg);
+            padding: 0.75rem 1rem;
+            border-radius: var(--hdr-radius);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+          }
+          .header-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+          }
+          .site-title {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 0.75rem;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+          }
+          .site-title:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+          }
+          .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+          }
+
+          /* RESPONSIVE */
+          @media (max-width: 576px) {
+            .site-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .site-title {
+              margin-bottom: 0.5rem;
+              font-size: 1.5rem;
+            }
+            .logo-img {
+              margin-bottom: 0.5rem;
+            }
+          }
+        </style>
+
+        </header>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L1 – Ethernet Cable Length Violation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #121212;
+      --section-bg: #1e1e1e;
+      --text-color: #f8f9fa;
+      --primary-color: #00c4cc;
+      --accent-color: #17a2b8;
+      --border-color: #333;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 800px;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    .content-block {
+      background-color: var(--section-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+    }
+    .content-title {
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: left;
+    }
+    .layer-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border-radius: 1rem;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      text-align: left;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 4px;
+      height: 1.25rem;
+      background-color: var(--primary-color);
+    }
+    /* add bottom border to each paragraph, list item and blockquote */
+    .content-block p,
+    .content-block ul li,
+    .content-block ol li {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      text-align: left;
+    }
+    .content-block ul,
+    .content-block ol {
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-box img:hover {
+      transform: scale(1.03);
+    }
+    .image-caption {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+    .btn-home {
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Title & Layer Badge -->
+    <div class="content-block">
+      <h1 class="content-title">Ethernet Cable Length Violation Causing Data Corruption</h1>
+      <div class="layer-badge">Layer 1 – Physical Layer</div>
+    </div>
+
+    <!-- Overview -->
+    <div class="content-block">
+      <h2 class="section-title">Overview</h2>
+      <p>
+        This tutorial focuses on a common Physical Layer (Layer 1) problem: exceeding the maximum recommended cable
+        length, leading to signal degradation, CRC errors, and overall data corruption. Even minor misconfigurations
+        at this layer can severely impact higher-layer operations.
+      </p>
+    </div>
+
+    <!-- Problem Scenario -->
+    <div class="content-block">
+      <h2 class="section-title">Problem Scenario</h2>
+      <p>
+        Many networks use CAT5e or CAT6 cables for switch/router connections. IEEE 802.3 standards limit these to 100
+        meters. In real deployments—such as warehouses or campuses—cables may unintentionally exceed this, causing
+        attenuation and packet errors.
+      </p>
+    </div>
+
+    <!-- Symptoms -->
+    <div class="content-block">
+      <h2 class="section-title">Symptoms of This Issue</h2>
+      <ul>
+        <li>Frequent CRC errors on switch interfaces</li>
+        <li>Packet loss during data transmission</li>
+        <li>Connection drops or high latency</li>
+        <li>TCP retransmissions and failed uploads</li>
+      </ul>
+    </div>
+
+    <!-- Technical Explanation -->
+    <div class="content-block">
+      <h2 class="section-title">Technical Explanation</h2>
+      <p>
+        Ethernet cables transmit signals electrically. Over long distances, signal strength diminishes (attenuation),
+        and noise (EMI) worsens. Beyond 100 m, the receiver may misinterpret bits, causing frame drops or errors.
+        Layer 1 doesn't correct this — it just transmits.
+      </p>
+    </div>
+
+    <!-- Solutions -->
+    <div class="content-block">
+      <h2 class="section-title">Solutions</h2>
+      <ol>
+        <li>Use a cable tester to measure length accurately.</li>
+        <li>Insert a switch/repeater to split long runs.</li>
+        <li>For &gt;100 m distances, switch to fiber optics.</li>
+        <li>Use shielded CAT6a cables for noise protection.</li>
+        <li>Keep Ethernet away from power sources and EMI zones.</li>
+        <li>Ensure connectors are properly terminated and crimped.</li>
+      </ol>
+    </div>
+
+    <!-- Verification -->
+    <div class="content-block">
+      <h2 class="section-title">Verification</h2>
+      <ul>
+        <li>Use ping tests to confirm packet integrity.</li>
+        <li>Check CRC error counters via switch CLI.</li>
+        <li>Re-run workloads (VoIP/file transfer) for stability.</li>
+        <li>Ensure cable layout follows standards and runs &lt;100 m.</li>
+      </ul>
+    </div>
+
+    <!-- Best Practices -->
+    <div class="content-block">
+      <h2 class="section-title">Best Practices</h2>
+      <ul>
+        <li>Document cable lengths and routes in network diagrams.</li>
+        <li>Label physical endpoints with length tags.</li>
+        <li>Use structured cabling systems and test periodically.</li>
+        <li>Prefer fiber for uplinks or building-to-building runs.</li>
+      </ul>
+    </div>
+
+    <!-- Visual Aids -->
+    <div class="content-block">
+      <h2 class="section-title">Visual Aids</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/img_proper_vs_improper.jpg" alt="Proper vs Improper Cabling">
+            <div class="image-caption">Proper vs improper Ethernet cabling layout.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/img_fiber_vs_utp.jpg" alt="Cable Tester">
+            <div class="image-caption">Cable tester displaying the actual length of an Ethernet cable.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/img_shielding_types.jpg" alt="Shielding Types">
+            <div class="image-caption">UTP, FTP, SFTP shielding comparison for Ethernet cables.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/img_connectors.jpg" alt="Fiber vs UTP Connectors">
+            <div class="image-caption">Comparison of RJ45 Ethernet vs fiber optic connectors.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="content-block">
+      <h2 class="section-title">Conclusion</h2>
+      <p>
+        Cable length violations are an often-overlooked root cause of network instability. Ensuring compliance with
+        Layer 1 specifications is essential to building reliable, high-performance infrastructure. Measure, document,
+        and audit cabling regularly to prevent silent failures.
+      </p>
+    </div>
+
+    <!-- Home Button -->
+    <div class="text-center">
+      <a href="index.html" class="btn btn-outline-primary btn-home">Home</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      &copy; 2025 KefoSoft Technologies. All rights reserved.
+    </div>
+        <style>
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 4.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+  </style>
+    
+  </div>
+
+</body>
+</html>

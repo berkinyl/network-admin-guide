@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <!-- Immediately inside your <body>, at the very top: -->
+        <header class="site-header">
+          <a href="index.html" class="header-link">
+            <div class="site-title">KEFOSOFT</div>
+            <img src="images/cat.png" alt="KefoSoft Logo" class="logo-img">
+          </a>
+
+            <!-- In your <head> -->
+        <style>
+          :root {
+            --hdr-bg: rgba(30,30,30,0.95);
+            --hdr-radius: 0.5rem;
+            --primary: #00c4cc;
+            --accent: #17a2b8;
+            --text-light: #f8f9fa;
+          }
+
+          /* HEADER STYLES */
+          .site-header {
+            background: var(--hdr-bg);
+            padding: 0.75rem 1rem;
+            border-radius: var(--hdr-radius);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+          }
+          .header-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+          }
+          .site-title {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 0.75rem;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+          }
+          .site-title:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+          }
+          .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+          }
+
+          /* RESPONSIVE */
+          @media (max-width: 576px) {
+            .site-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .site-title {
+              margin-bottom: 0.5rem;
+              font-size: 1.5rem;
+            }
+            .logo-img {
+              margin-bottom: 0.5rem;
+            }
+          }
+        </style>
+
+        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L7 – HTTP vs HTTPS Vulnerability</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #121212;
+      --section-bg: #1e1e1e;
+      --text-color: #f8f9fa;
+      --primary-color: #00c4cc;
+      --accent-color: #17a2b8;
+      --border-color: #333;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 800px;
+      padding: 2rem 1rem;
+      margin: 0 auto;
+    }
+    .content-block {
+      background-color: var(--section-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .content-title {
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: left;
+    }
+    .layer-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border-radius: 1rem;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      text-align: left;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 4px;
+      height: 1.25rem;
+      background-color: var(--primary-color);
+    }
+    .content-block p,
+    .content-block ul li {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      text-align: left;
+    }
+    .content-block ul {
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+    }
+    .content-block code {
+      background-color: #1e1e1e;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #00ffff;
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-box img:hover {
+      transform: scale(1.03);
+    }
+    .image-caption {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+    .btn-home {
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Title & Layer Badge -->
+    <div class="content-block">
+      <h1 class="content-title">Security Vulnerability from Using HTTP Instead of HTTPS</h1>
+      <div class="layer-badge">Layer 7 – Application Layer</div>
+    </div>
+
+    <!-- Overview -->
+    <div class="content-block">
+      <h2 class="section-title">Overview</h2>
+      <p>
+        This tutorial focuses on a widespread and critical Application Layer vulnerability: the use of unencrypted HTTP instead of secure HTTPS for transmitting data over the web. When applications transmit sensitive information such as login credentials, payment details, or personal data over HTTP, that data can be intercepted, modified, or stolen by malicious actors. HTTPS is essential for protecting data in transit and establishing trust between clients and servers.
+      </p>
+    </div>
+
+    <!-- Problem Scenario -->
+    <div class="content-block">
+      <h2 class="section-title">Problem Scenario</h2>
+      <p>
+        A web application is deployed without HTTPS. Users access it through a standard <code>http://</code> URL and enter sensitive data such as usernames, passwords, or form inputs. Since the data is transmitted in plaintext, any attacker on the same network — such as public Wi-Fi — can use tools like packet sniffers to capture and read the traffic.
+      </p>
+      <p>
+        The user may not realize the connection is insecure, especially if the browser does not warn them or if the fake site looks authentic. Attackers can also inject malicious content or perform session hijacking.
+      </p>
+    </div>
+
+    <!-- Common Symptoms and Risks -->
+    <div class="content-block">
+      <h2 class="section-title">Common Symptoms and Risks</h2>
+      <ul>
+        <li>No padlock or “Secure” label in the browser’s address bar</li>
+        <li>Web addresses begin with <code>http://</code> instead of <code>https://</code></li>
+        <li>Login pages submit credentials via unencrypted forms</li>
+        <li>Session hijacking, credential theft, or MITM attacks</li>
+        <li>Users redirected to fake or malicious websites</li>
+        <li>Browser security tools issue mixed content or insecure form warnings</li>
+      </ul>
+    </div>
+
+    <!-- Technical Explanation -->
+    <div class="content-block">
+      <h2 class="section-title">Why This Happens – Technical Explanation</h2>
+      <p>
+        HTTP transmits all content as plaintext: headers, cookies, forms, and data. There's no encryption, authentication, or integrity check. Anyone with access to the network can eavesdrop or tamper with traffic.
+      </p>
+      <p>
+        HTTPS uses SSL/TLS to encrypt data during transit. It authenticates the server using a digital certificate, ensuring the client is connected to the real server and that the data has not been modified.
+      </p>
+      <p>
+        Legacy systems, misconfigured servers, or staging environments often default to HTTP, exposing users to risk.
+      </p>
+    </div>
+
+    <!-- Step-by-Step Solution -->
+    <div class="content-block">
+      <h2 class="section-title">Step-by-Step Solution and Migration Strategy</h2>
+      <ul>
+        <li><strong>Install an SSL/TLS certificate:</strong> Get one from a trusted CA or use Let’s Encrypt for free.</li>
+        <li><strong>Configure the web server for HTTPS:</strong> Listen on port 443 and serve the certificate.</li>
+        <li><strong>Redirect all HTTP traffic to HTTPS:</strong> Use 301/302 redirects to force <code>https://</code> access.</li>
+        <li><strong>Enable HSTS:</strong> Enforce secure connections via HTTP Strict Transport Security headers.</li>
+        <li><strong>Update internal links and forms:</strong> Ensure they use <code>https://</code> to avoid mixed content.</li>
+        <li><strong>Validate setup:</strong> Use tools like SSL Labs or browser dev tools to check certificate validity and strength.</li>
+        <li><strong>Automate renewals:</strong> Use tools like Certbot to keep certificates up to date.</li>
+      </ul>
+    </div>
+
+    <!-- Post-Fix Verification Steps -->
+    <div class="content-block">
+      <h2 class="section-title">Post-Fix Verification Steps</h2>
+      <ul>
+        <li>Check for the HTTPS padlock in the browser.</li>
+        <li>Verify that form data is encrypted in transit.</li>
+        <li>Use packet sniffers to confirm no plaintext traffic.</li>
+        <li>Ensure the browser shows no security warnings.</li>
+        <li>Test HTTP-to-HTTPS redirection on all pages.</li>
+      </ul>
+    </div>
+
+    <!-- Visual Aids -->
+    <div class="content-block">
+      <h2 class="section-title">Visual Aids</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/https_padlock.webp" alt="HTTPS Padlock">
+            <div class="image-caption">
+              Browser address bar showing the presence or absence of the HTTPS padlock.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/mitm_attack_diagram.jpg" alt="MITM Attack Diagram">
+            <div class="image-caption">
+              Diagram illustrating a Man-in-the-Middle attack comparing HTTP and HTTPS.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/plaintext_vs_encrypted_packets.jpeg" alt="Packet Capture Comparison">
+            <div class="image-caption">
+              Side-by-side comparison of HTTP plaintext packets vs encrypted HTTPS packets.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/http_to_https_redirect_flow.png" alt="HTTP to HTTPS Redirect">
+            <div class="image-caption">
+              Flowchart showing how an HTTP request is redirected to HTTPS for secure communication.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Practices -->
+    <div class="content-block">
+      <h2 class="section-title">Best Practices</h2>
+      <ul>
+        <li>Use HTTPS on all pages, even public or informational ones.</li>
+        <li>Implement HSTS headers to enforce HTTPS usage.</li>
+        <li>Avoid mixed content by loading all assets via HTTPS.</li>
+        <li>Adopt modern TLS versions and secure cipher suites.</li>
+        <li>Educate developers and users on recognizing secure connections.</li>
+      </ul>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="content-block">
+      <h2 class="section-title">Conclusion</h2>
+      <p>
+        Relying on HTTP in modern web environments exposes users to serious threats. HTTPS is no longer optional—it is the minimum standard for web security. By enforcing encrypted, authenticated communication through HTTPS, organizations can ensure user trust, prevent data leaks, and build a secure foundation for web-based applications and services.
+      </p>
+    </div>
+
+    <!-- Related Concepts -->
+    <div class="content-block">
+      <h2 class="section-title">Related Concepts</h2>
+      <ul>
+        <li>SSL/TLS encryption</li>
+        <li>Digital certificates and CAs</li>
+        <li>Man-in-the-Middle attacks</li>
+        <li>HSTS (HTTP Strict Transport Security)</li>
+        <li>Mixed content blocking</li>
+        <li>Secure cookie and session handling</li>
+      </ul>
+    </div>
+
+    <!-- Home Button -->
+    <div class="text-center">
+      <a href="index.html" class="btn btn-outline-primary btn-home">Home</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      &copy; 2025 KefoSoft Technologies. All rights reserved.
+    </div>
+            <style>
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 4.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+  </style>
+
+  </div>
+
+</body>
+</html>

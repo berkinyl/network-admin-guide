@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <!-- Immediately inside your <body>, at the very top: -->
+        <header class="site-header">
+          <a href="index.html" class="header-link">
+            <div class="site-title">KEFOSOFT</div>
+            <img src="images/cat.png" alt="KefoSoft Logo" class="logo-img">
+          </a>
+
+            <!-- In your <head> -->
+        <style>
+          :root {
+            --hdr-bg: rgba(30,30,30,0.95);
+            --hdr-radius: 0.5rem;
+            --primary: #00c4cc;
+            --accent: #17a2b8;
+            --text-light: #f8f9fa;
+          }
+
+          /* HEADER STYLES */
+          .site-header {
+            background: var(--hdr-bg);
+            padding: 0.75rem 1rem;
+            border-radius: var(--hdr-radius);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+          }
+          .header-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+          }
+          .site-title {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 0.75rem;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+          }
+          .site-title:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+          }
+          .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+          }
+
+          /* RESPONSIVE */
+          @media (max-width: 576px) {
+            .site-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .site-title {
+              margin-bottom: 0.5rem;
+              font-size: 1.5rem;
+            }
+            .logo-img {
+              margin-bottom: 0.5rem;
+            }
+          }
+        </style>
+
+        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L2 – VLAN Broadcast Leakage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #121212;
+      --section-bg: #1e1e1e;
+      --text-color: #f8f9fa;
+      --primary-color: #00c4cc;
+      --accent-color: #17a2b8;
+      --border-color: #333;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 800px;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    .content-block {
+      background-color: var(--section-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+    }
+    .content-title {
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: left;
+    }
+    .layer-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border-radius: 1rem;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      text-align: left;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 4px;
+      height: 1.25rem;
+      background-color: var(--primary-color);
+    }
+    .content-block p,
+    .content-block ul li,
+    .content-block ol li {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      text-align: left;
+    }
+    .content-block ul,
+    .content-block ol {
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-box img:hover {
+      transform: scale(1.03);
+    }
+    .image-caption {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+    .btn-home {
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Title & Layer Badge -->
+    <div class="content-block">
+      <h1 class="content-title">VLAN Configuration Errors Causing Excessive Broadcast Traffic</h1>
+      <div class="layer-badge">Layer 2 – Data Link Layer</div>
+    </div>
+
+    <!-- Overview -->
+    <div class="content-block">
+      <h2 class="section-title">Overview</h2>
+      <p>
+        This tutorial explains a common Layer 2 networking issue: improper configuration of VLANs (Virtual LANs),
+        which can result in broadcast traffic being sent to unintended devices. When VLANs are not properly segmented,
+        devices that should be isolated can receive each other's broadcast frames, leading to performance degradation,
+        security concerns, and unnecessary network congestion.
+      </p>
+    </div>
+
+    <!-- Problem Scenario -->
+    <div class="content-block">
+      <h2 class="section-title">Problem Scenario</h2>
+      <p>
+        VLANs logically separate devices into broadcast domains. If switch ports are misconfigured, devices in
+        different groups may end up in the same VLAN. As a result, broadcast frames like ARP or DHCP requests may
+        traverse user groups that should be isolated.
+      </p>
+    </div>
+
+    <!-- Common Symptoms -->
+    <div class="content-block">
+      <h2 class="section-title">Common Symptoms</h2>
+      <ul>
+        <li>Unrelated devices receive each other’s broadcasts.</li>
+        <li>Elevated switch CPU usage due to broadcast processing.</li>
+        <li>Random network slowdowns or user complaints.</li>
+        <li>Unauthorized access to services like DHCP or printers.</li>
+        <li>Duplicate IP conflicts from DHCP cross-leaks.</li>
+      </ul>
+    </div>
+
+    <!-- Technical Background -->
+    <div class="content-block">
+      <h2 class="section-title">Why This Happens – Technical Background</h2>
+      <p>
+        Ethernet broadcasts are confined within VLAN boundaries. When VLAN assignments are incorrect—such as shared
+        default VLAN 1 usage or trunk misconfiguration—broadcasts leak across logical groups. Switches lose isolation,
+        and frames reach unintended destinations.
+      </p>
+    </div>
+
+    <!-- Solutions -->
+    <div class="content-block">
+      <h2 class="section-title">Solutions</h2>
+      <ol>
+        <li>Assign each department or zone a unique VLAN ID.</li>
+        <li>Check all access ports with <code>show vlan</code>.</li>
+        <li>Use <code>switchport trunk allowed vlan</code> to limit trunks.</li>
+        <li>Disable VLAN 1 for production traffic.</li>
+        <li>Document port roles and validate VLAN plans.</li>
+        <li>Use inter-VLAN ACLs to control routing between segments.</li>
+      </ol>
+    </div>
+
+    <!-- Post-Fix Verification -->
+    <div class="content-block">
+      <h2 class="section-title">Post-Fix Verification</h2>
+      <ul>
+        <li>Use ping/traceroute to confirm isolation.</li>
+        <li>Verify correct broadcast behavior via packet captures.</li>
+        <li>Test DHCP scope boundaries across VLANs.</li>
+        <li>Re-check VLAN configurations on all switches.</li>
+      </ul>
+    </div>
+
+    <!-- Visual Aids -->
+    <div class="content-block">
+      <h2 class="section-title">Visual Aids</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vlan_domain.jpg" alt="Correct vs Incorrect VLANs">
+            <div class="image-caption">Diagram showing correct vs incorrect VLAN assignments across switch ports.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vlan_port_assignment.png" alt="show vlan output">
+            <div class="image-caption">Screenshot of <code>show vlan</code> output on a misconfigured switch.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vlan_topology_lab.jpg" alt="Broadcast Leakage">
+            <div class="image-caption">Broadcast frames leaking between VLANs due to shared IDs.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vlan_broadcast_leakage.jpg" alt="Correct Port Assignments">
+            <div class="image-caption">Example showing fixed port assignments after proper VLAN reconfiguration.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="content-block">
+      <h2 class="section-title">Conclusion</h2>
+      <p>
+        VLAN misconfigurations silently expose networks to broadcast storms and access violations. Consistent VLAN
+        planning, trunk auditing, and documentation ensure strong segmentation and performance across Layer 2 domains.
+      </p>
+    </div>
+
+    <!-- Related Concepts -->
+    <div class="content-block">
+      <h2 class="section-title">Related Concepts</h2>
+      <ul>
+        <li>VLAN tagging (IEEE 802.1Q)</li>
+        <li>Trunk vs access ports</li>
+        <li>Broadcast containment</li>
+        <li>VLAN hopping & misconfiguration risks</li>
+        <li>Inter-VLAN ACL design</li>
+      </ul>
+    </div>
+
+    <!-- Home Button -->
+    <div class="text-center">
+      <a href="index.html" class="btn btn-outline-primary btn-home">Home</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      &copy; 2025 KefoSoft Technologies. All rights reserved.
+    </div>
+            <style>
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 4.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+  </style>
+
+  </div>
+
+</body>
+</html>

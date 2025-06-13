@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <!-- Immediately inside your <body>, at the very top: -->
+        <header class="site-header">
+          <a href="index.html" class="header-link">
+            <div class="site-title">KEFOSOFT</div>
+            <img src="images/cat.png" alt="KefoSoft Logo" class="logo-img">
+          </a>
+
+            <!-- In your <head> -->
+        <style>
+          :root {
+            --hdr-bg: rgba(30,30,30,0.95);
+            --hdr-radius: 0.5rem;
+            --primary: #00c4cc;
+            --accent: #17a2b8;
+            --text-light: #f8f9fa;
+          }
+
+          /* HEADER STYLES */
+          .site-header {
+            background: var(--hdr-bg);
+            padding: 0.75rem 1rem;
+            border-radius: var(--hdr-radius);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+          }
+          .header-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+          }
+          .site-title {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 0.75rem;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+          }
+          .site-title:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+          }
+          .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+          }
+
+          /* RESPONSIVE */
+          @media (max-width: 576px) {
+            .site-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .site-title {
+              margin-bottom: 0.5rem;
+              font-size: 1.5rem;
+            }
+            .logo-img {
+              margin-bottom: 0.5rem;
+            }
+          }
+        </style>
+
+        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L7 – DNS Spoofing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #121212;
+      --section-bg: #1e1e1e;
+      --text-color: #f8f9fa;
+      --primary-color: #00c4cc;
+      --accent-color: #17a2b8;
+      --border-color: #333;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 800px;
+      padding: 2rem 1rem;
+      margin: 0 auto;
+    }
+    .content-block {
+      background-color: var(--section-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .content-title {
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: left;
+    }
+    .layer-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border-radius: 1rem;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      text-align: left;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 4px;
+      height: 1.25rem;
+      background-color: var(--primary-color);
+    }
+    .content-block p,
+    .content-block ul li {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      text-align: left;
+    }
+    .content-block ul {
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+    }
+    .content-block code {
+      background-color: #1e1e1e;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #00ffff;
+    }
+    .content-block pre {
+      background-color: #1e1e1e;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #00ffff;
+      margin-bottom: 0.75rem;
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-box img:hover {
+      transform: scale(1.03);
+    }
+    .image-caption {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+    .btn-home {
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Title & Layer Badge -->
+    <div class="content-block">
+      <h1 class="content-title">Traffic Redirection Through DNS Spoofing</h1>
+      <div class="layer-badge">Layer 7 – Application Layer</div>
+    </div>
+
+    <!-- Overview -->
+    <div class="content-block">
+      <h2 class="section-title">Overview</h2>
+      <p>
+        This tutorial explains a serious Application Layer (Layer 7) security issue: DNS spoofing. In this attack, a malicious actor manipulates DNS responses so that a user’s traffic is redirected to a fake or unauthorized destination. DNS spoofing (also known as DNS poisoning) compromises the core functionality of name resolution and can lead to credential theft, malware delivery, or surveillance.
+      </p>
+    </div>
+
+    <!-- Problem Scenario -->
+    <div class="content-block">
+      <h2 class="section-title">Problem Scenario</h2>
+      <p>
+        A user attempts to visit a legitimate website (e.g., www.bankexample.com). Their computer sends a DNS query to resolve the domain name to an IP address. Instead of receiving the correct IP, the attacker injects a forged DNS response that points the domain to a malicious server. The user’s browser connects to the fake site, which may look identical to the real one, and unknowingly submits login credentials or sensitive data.
+      </p>
+      <p>
+        Because DNS queries are often performed using UDP without encryption or authentication, attackers can easily spoof responses in poorly secured networks, especially in public Wi-Fi environments or legacy systems.
+      </p>
+    </div>
+
+    <!-- Common Symptoms -->
+    <div class="content-block">
+      <h2 class="section-title">Common Symptoms</h2>
+      <ul>
+        <li>Legitimate websites redirect to fake or unexpected pages</li>
+        <li>SSL/TLS certificate warnings in the browser</li>
+        <li>Strange domains or IPs appear in DNS resolution logs</li>
+        <li>Users report phishing activity on well-known domains</li>
+        <li>Sudden increase in login attempts or credential leaks</li>
+      </ul>
+    </div>
+
+    <!-- Technical Explanation -->
+    <div class="content-block">
+      <h2 class="section-title">Why This Happens – Technical Explanation</h2>
+      <p>
+        The Domain Name System (DNS) is responsible for translating domain names into IP addresses. Traditional DNS queries are unauthenticated and transmitted over UDP port 53, making them vulnerable to spoofing.
+      </p>
+      <p>
+        In DNS spoofing, the attacker intercepts or races to respond to a DNS request with a fake answer, tricking the client into accepting the malicious response. Since the DNS client trusts the first valid-looking reply, it may cache the wrong IP address, causing ongoing redirection even after the initial attack.
+      </p>
+      <p>
+        This attack compromises the Application Layer because it interferes directly with name-based access to services like web, email, and remote applications.
+      </p>
+    </div>
+
+    <!-- Solutions -->
+    <div class="content-block">
+      <h2 class="section-title">Step-by-Step Solution and Prevention</h2>
+      <ul>
+        <li>Use DNS over HTTPS (DoH) or DNS over TLS (DoT) to encrypt DNS traffic.</li>
+        <li>Deploy DNSSEC with cryptographic signatures to validate DNS responses.</li>
+        <li>Configure endpoint DNS settings to use secure resolvers (e.g., 1.1.1.1, 8.8.8.8).</li>
+        <li>Monitor DNS logs to detect abnormal resolution patterns and spoof attempts.</li>
+        <li>Implement firewall controls to restrict DNS traffic to authorized servers only.</li>
+        <li>Train users to recognize phishing signs and certificate warnings.</li>
+        <li>Use application-level protections like HSTS and certificate pinning.</li>
+      </ul>
+    </div>
+
+    <!-- Verification -->
+    <div class="content-block">
+      <h2 class="section-title">Post-Fix Verification Steps</h2>
+      <ul>
+        <li>Use trusted DNS tools to verify accurate domain resolution.</li>
+        <li>Test browser behavior on known sites and inspect certificates.</li>
+        <li>Monitor for reduction in phishing attempts or DNS anomalies.</li>
+        <li>Check DNS server logs for spoofed entries or mismatches.</li>
+      </ul>
+    </div>
+
+    <!-- Visual Aids -->
+    <div class="content-block">
+      <h2 class="section-title">Visual Aids</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/dns_spoofing_diagram.png" alt="DNS Spoofing Diagram">
+            <div class="image-caption">
+              Diagram comparing a normal vs spoofed DNS resolution flow.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/ssl_warning_example.png" alt="SSL Warning Example">
+            <div class="image-caption">
+              SSL warning page shown after redirection to a spoofed website.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/dns_log_comparison.png" alt="DNS Log Comparison">
+            <div class="image-caption">
+              Logs showing differences between valid and forged DNS responses.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/dnssec_validation_flow.png" alt="DNSSEC Validation Flow">
+            <div class="image-caption">
+              DNSSEC validation flow illustrating response authentication using keys.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Practices -->
+    <div class="content-block">
+      <h2 class="section-title">Best Practices</h2>
+      <ul>
+        <li>Use encrypted DNS protocols for all clients and servers.</li>
+        <li>Validate DNS settings regularly, especially in exposed services.</li>
+        <li>Integrate DNS monitoring with your SIEM or security tools.</li>
+        <li>Complement DNS defense with TLS, endpoint protection, and user education.</li>
+        <li>Flush DNS cache periodically to eliminate poisoned entries.</li>
+      </ul>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="content-block">
+      <h2 class="section-title">Conclusion</h2>
+      <p>
+        DNS spoofing is a powerful attack that targets the most basic functionality of internet communication — name resolution. By exploiting the lack of authentication in traditional DNS, attackers can silently redirect users and compromise sensitive data. Modern protocols like DNSSEC and DoH, along with good DNS hygiene and awareness, form a strong defense against this often invisible threat.
+      </p>
+    </div>
+
+    <!-- Related Concepts -->
+    <div class="content-block">
+      <h2 class="section-title">Related Concepts</h2>
+      <ul>
+        <li>DNS protocol and name resolution</li>
+        <li>UDP vulnerabilities</li>
+        <li>DNSSEC and digital signatures</li>
+        <li>Encrypted DNS (DoH, DoT)</li>
+        <li>SSL/TLS certificate verification</li>
+        <li>Phishing detection and prevention</li>
+      </ul>
+    </div>
+
+    <!-- Home Button -->
+    <div class="text-center">
+      <a href="index.html" class="btn btn-outline-primary btn-home">Home</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      &copy; 2025 KefoSoft Technologies. All rights reserved.
+    </div>
+            <style>
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 4.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+  </style>
+
+  </div>
+
+</body>
+</html>

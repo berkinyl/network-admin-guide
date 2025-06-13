@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <!-- Immediately inside your <body>, at the very top: -->
+        <header class="site-header">
+          <a href="index.html" class="header-link">
+            <div class="site-title">KEFOSOFT</div>
+            <img src="images/cat.png" alt="KefoSoft Logo" class="logo-img">
+          </a>
+
+            <!-- In your <head> -->
+        <style>
+          :root {
+            --hdr-bg: rgba(30,30,30,0.95);
+            --hdr-radius: 0.5rem;
+            --primary: #00c4cc;
+            --accent: #17a2b8;
+            --text-light: #f8f9fa;
+          }
+
+          /* HEADER STYLES */
+          .site-header {
+            background: var(--hdr-bg);
+            padding: 0.75rem 1rem;
+            border-radius: var(--hdr-radius);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+          }
+          .header-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+          }
+          .site-title {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 0.75rem;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+          }
+          .site-title:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+          }
+          .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+          }
+
+          /* RESPONSIVE */
+          @media (max-width: 576px) {
+            .site-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .site-title {
+              margin-bottom: 0.5rem;
+              font-size: 1.5rem;
+            }
+            .logo-img {
+              margin-bottom: 0.5rem;
+            }
+          }
+        </style>
+
+        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L5 – VPN Session Persistence Issue</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #121212;
+      --section-bg: #1e1e1e;
+      --text-color: #f8f9fa;
+      --primary-color: #00c4cc;
+      --accent-color: #17a2b8;
+      --border-color: #333;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 800px;
+      padding: 2rem 1rem;
+      margin: 0 auto;
+    }
+    .content-block {
+      background-color: var(--section-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .content-title {
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: left;
+    }
+    .layer-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border-radius: 1rem;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      text-align: left;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 4px;
+      height: 1.25rem;
+      background-color: var(--primary-color);
+    }
+    .content-block p,
+    .content-block ul li {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      text-align: left;
+    }
+    .content-block ul {
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-box img:hover {
+      transform: scale(1.03);
+    }
+    .image-caption {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+    .btn-home {
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Title & Layer Badge -->
+    <div class="content-block">
+      <h1 class="content-title">Session Persistence Issues After VPN Disconnection</h1>
+      <div class="layer-badge">Layer 5 – Session Layer</div>
+    </div>
+
+    <!-- Overview -->
+    <div class="content-block">
+      <h2 class="section-title">Overview</h2>
+      <p>
+        This tutorial explores a common Session Layer (Layer 5) challenge encountered in remote access environments:
+        VPN session interruptions that cause application sessions to break, forcing users to restart their activities
+        from scratch. This issue particularly affects time-sensitive or interactive applications such as web-based
+        dashboards, enterprise portals, or file transfer operations.
+      </p>
+    </div>
+
+    <!-- Problem Scenario -->
+    <div class="content-block">
+      <h2 class="section-title">Problem Scenario</h2>
+      <p>
+        A remote employee is connected to the company’s internal network using a VPN (Virtual Private Network).
+        During the session, their VPN connection is lost due to temporary internet failure, wireless instability, or
+        VPN timeout. Once the VPN reconnects, the user realizes that previously opened browser tabs or applications
+        have logged them out or failed mid-action.
+      </p>
+      <p>
+        This is a session persistence failure—at Layer 5—where the continuity of an established session cannot be
+        preserved through temporary network disconnections.
+      </p>
+    </div>
+
+    <!-- Common Symptoms -->
+    <div class="content-block">
+      <h2 class="section-title">Common Symptoms</h2>
+      <ul>
+        <li>Web sessions expire or log out immediately after VPN reconnects</li>
+        <li>Downloads or uploads fail and must be restarted</li>
+        <li>SSH or RDP sessions drop and cannot reconnect automatically</li>
+        <li>Applications prompt for login again after a brief VPN dropout</li>
+        <li>Lost form data or session state in online applications</li>
+      </ul>
+    </div>
+
+    <!-- Technical Explanation -->
+    <div class="content-block">
+      <h2 class="section-title">Why This Happens – Technical Explanation</h2>
+      <p>
+        The Session Layer manages and maintains sessions between applications. In VPN communications, the transport
+        and network layers are tunneled through a secure connection. When that VPN tunnel breaks, so does the
+        end-to-end logical session.
+      </p>
+      <p>
+        Many applications tie session tokens, cookies, or IDs to the client’s IP address. When a VPN reconnects,
+        users may receive a different internal IP, invalidating existing sessions. Long-running TCP sessions like
+        RDP or SSH also often drop when the tunnel resets.
+      </p>
+    </div>
+
+    <!-- Solutions -->
+    <div class="content-block">
+      <h2 class="section-title">Step-by-Step Solution and Mitigation Strategies</h2>
+      <ul>
+        <li>Use VPN clients that support session resumption or token-based reconnect.</li>
+        <li>Enable auto-reconnect features in RDP/SSH clients.</li>
+        <li>Assign static VPN IP addresses to critical users.</li>
+        <li>Increase session timeouts on web/application servers.</li>
+        <li>Implement server-side persistence (device-bound tokens, heartbeats).</li>
+        <li>Encourage wired connections for greater stability.</li>
+      </ul>
+    </div>
+
+    <!-- Verification -->
+    <div class="content-block">
+      <h2 class="section-title">Post-Fix Verification Steps</h2>
+      <ul>
+        <li>Simulate VPN disconnect/reconnect and observe session continuity.</li>
+        <li>Ensure consistent VPN IP assignment after reconnect.</li>
+        <li>Verify web apps retain session state.</li>
+        <li>Review logs or captures for seamless reconnection.</li>
+      </ul>
+    </div>
+
+    <!-- Visual Aids -->
+    <div class="content-block">
+      <h2 class="section-title">Visual Aids</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vpn_session_flow.jpg" alt="VPN Session Flow">
+            <div class="image-caption">
+              Diagram showing VPN traffic flow before and after session interruption.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vpn_reconnect_settings.png" alt="VPN Reconnect Settings">
+            <div class="image-caption">
+              VPN client interface with auto-reconnect and session caching enabled.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vpn_session_timeout_timeline.jpeg" alt="Session Timeout Timeline">
+            <div class="image-caption">
+              Timeline comparing session timeout behavior with and without persistence.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/vpn_session_token_management.png" alt="Session Token Management">
+            <div class="image-caption">
+              Architectural diagram illustrating session association with IP or token.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Practices -->
+    <div class="content-block">
+      <h2 class="section-title">Best Practices</h2>
+      <ul>
+        <li>Test VPN reconnection under real-world loss scenarios.</li>
+        <li>Choose VPNs supporting session tokens or caching.</li>
+        <li>Instruct users not to close browsers during dropouts.</li>
+        <li>Implement session retry logic in applications.</li>
+        <li>Log VPN disconnect/reconnect events for analysis.</li>
+      </ul>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="content-block">
+      <h2 class="section-title">Conclusion</h2>
+      <p>
+        VPN disconnections are inevitable but shouldn’t disrupt workflows. Addressing session persistence at the VPN
+        and application layers delivers a seamless experience, reducing frustration and productivity loss.
+      </p>
+    </div>
+
+    <!-- Related Concepts -->
+    <div class="content-block">
+      <h2 class="section-title">Related Concepts</h2>
+      <ul>
+        <li>Session management (Layer 5)</li>
+        <li>VPN tunneling & IP assignment</li>
+        <li>Session tokens & cookies</li>
+        <li>TCP session reliability</li>
+        <li>Stateful firewall & NAT traversal</li>
+      </ul>
+    </div>
+
+    <!-- Home Button -->
+    <div class="text-center">
+      <a href="index.html" class="btn btn-outline-primary btn-home">Home</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      &copy; 2025 KefoSoft Technologies. All rights reserved.
+    </div>
+            <style>
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 4.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+  </style>
+
+  </div>
+
+</body>
+</html>

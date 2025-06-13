@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <!-- Immediately inside your <body>, at the very top: -->
+        <header class="site-header">
+          <a href="index.html" class="header-link">
+            <div class="site-title">KEFOSOFT</div>
+            <img src="images/cat.png" alt="KefoSoft Logo" class="logo-img">
+          </a>
+
+            <!-- In your <head> -->
+        <style>
+          :root {
+            --hdr-bg: rgba(30,30,30,0.95);
+            --hdr-radius: 0.5rem;
+            --primary: #00c4cc;
+            --accent: #17a2b8;
+            --text-light: #f8f9fa;
+          }
+
+          /* HEADER STYLES */
+          .site-header {
+            background: var(--hdr-bg);
+            padding: 0.75rem 1rem;
+            border-radius: var(--hdr-radius);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+          }
+          .header-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+          }
+          .site-title {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 0.75rem;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+          }
+          .site-title:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+          }
+          .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+          }
+
+          /* RESPONSIVE */
+          @media (max-width: 576px) {
+            .site-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .site-title {
+              margin-bottom: 0.5rem;
+              font-size: 1.5rem;
+            }
+            .logo-img {
+              margin-bottom: 0.5rem;
+            }
+          }
+        </style>
+
+        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L3 – OSPF Router ID Conflict</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #121212;
+      --section-bg: #1e1e1e;
+      --text-color: #f8f9fa;
+      --primary-color: #00c4cc;
+      --accent-color: #17a2b8;
+      --border-color: #333;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Times New Roman", serif;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 800px;
+      padding: 2rem 1rem;
+      margin: 0 auto;
+    }
+    .content-block {
+      background-color: var(--section-bg);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .content-title {
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: left;
+    }
+    .layer-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.9rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border-radius: 1rem;
+    }
+    .section-title {
+      position: relative;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      text-align: left;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 4px;
+      height: 1.25rem;
+      background-color: var(--primary-color);
+    }
+    .content-block p,
+    .content-block ul li,
+    .content-block ol li {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      text-align: left;
+    }
+    .content-block ul,
+    .content-block ol {
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+    }
+    .content-block code {
+      background-color: #1e1e1e;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #00ffff;
+    }
+    .content-block pre {
+      background-color: #1e1e1e;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #00ffff;
+      margin-bottom: 0.75rem;
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-box img:hover {
+      transform: scale(1.03);
+    }
+    .image-caption {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 0.5rem;
+      text-align: left;
+    }
+    .btn-home {
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Title & Layer Badge -->
+    <div class="content-block">
+      <h1 class="content-title">OSPF Router ID Conflicts Causing Routing Instability</h1>
+      <div class="layer-badge">Layer 3 – Network Layer</div>
+    </div>
+
+    <!-- Overview -->
+    <div class="content-block">
+      <h2 class="section-title">Overview</h2>
+      <p>
+        This tutorial addresses a routing instability issue in Layer 3 networks using the OSPF (Open Shortest Path First)
+        protocol: conflicting Router IDs. When two or more OSPF routers have the same Router ID, it can result in
+        unpredictable routing behavior, flapping adjacencies, and even route loss in certain network topologies.
+      </p>
+    </div>
+
+    <!-- Problem Scenario -->
+    <div class="content-block">
+      <h2 class="section-title">Problem Scenario</h2>
+      <p>
+        In a multi-router OSPF environment, each router must have a unique Router ID (RID). The Router ID is a 32-bit
+        number, typically formatted like an IPv4 address, that uniquely identifies each OSPF-speaking device in the
+        network.
+      </p>
+      <p>
+        If two routers are configured with the same RID—either manually or automatically through the highest IP on a
+        loopback or active interface—OSPF considers them to be the same node. This creates conflicts in the Link-State
+        Database (LSDB), breaks adjacency formations, and may cause route calculations to fail or oscillate.
+      </p>
+    </div>
+
+    <!-- Typical Symptoms -->
+    <div class="content-block">
+      <h2 class="section-title">Typical Symptoms</h2>
+      <ul>
+        <li>OSPF neighbor relationships constantly form and break (flapping).</li>
+        <li><code>show ip ospf neighbor</code> shows unstable or missing peers.</li>
+        <li>Routes learned via OSPF appear and disappear from the routing table.</li>
+        <li>Inconsistent traffic paths and intermittent connectivity.</li>
+        <li>LSDB shows multiple entries with the same RID but different links.</li>
+      </ul>
+    </div>
+
+    <!-- Technical Background -->
+    <div class="content-block">
+      <h2 class="section-title">Technical Background</h2>
+      <p>
+        OSPF relies on each router having a unique Router ID to build a consistent LSDB and determine the shortest path
+        using Dijkstra's algorithm. If two routers advertise LSAs with the same RID, OSPF cannot distinguish between
+        them. This leads to database corruption, stale routes, or continuous reconvergence.
+      </p>
+      <p>
+        By default, if not manually configured, the Router ID is automatically chosen as:
+      </p>
+      <ul>
+        <li>The highest IP address on a loopback interface, if present</li>
+        <li>Otherwise, the highest active IP address on any interface</li>
+      </ul>
+      <p>
+        This automatic behavior can lead to accidental RID duplication, especially in cloned virtual environments or
+        scripted deployments.
+      </p>
+    </div>
+
+    <!-- Step-by-Step Solution -->
+    <div class="content-block">
+      <h2 class="section-title">Step-by-Step Solution</h2>
+      <ul>
+        <li><strong>Check existing Router IDs:</strong> Use <code>show ip ospf</code> on each router.</li>
+        <li><strong>Identify duplicate Router IDs:</strong> Compare RIDs across all routers in the OSPF area.</li>
+        <li><strong>Manually configure unique Router ID:</strong></li>
+      </ul>
+      <pre>
+router ospf 1
+ router-id 1.1.1.1
+      </pre>
+      <ul>
+        <li><strong>Restart OSPF process for change to take effect:</strong></li>
+      </ul>
+      <pre>
+clear ip ospf process
+      </pre>
+      <ul>
+        <li><strong>Re-establish adjacencies:</strong> Verify that neighbors reconnect successfully.</li>
+        <li><strong>Document and reserve RIDs:</strong> Prevent future conflicts with a RID assignment table.</li>
+      </ul>
+    </div>
+
+    <!-- Post-Fix Verification -->
+    <div class="content-block">
+      <h2 class="section-title">Post-Fix Verification</h2>
+      <ul>
+        <li>Use <code>show ip ospf neighbor</code> to confirm stable adjacencies.</li>
+        <li>Use <code>show ip route ospf</code> to validate expected route entries.</li>
+        <li>Check <code>show ip ospf database</code> to ensure unique RIDs across LSDB.</li>
+        <li>Monitor for long-term routing stability and no flapping.</li>
+      </ul>
+    </div>
+
+    <!-- Visual Aids -->
+    <div class="content-block">
+      <h2 class="section-title">Visual Aids</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/ospf_topology_conflict_fix.jpg" alt="OSPF Topology Conflict Fix">
+            <div class="image-caption">
+              Topology showing the conflict in neighbor relationships caused by devices with the same Router ID in an OSPF network.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/ospf_neighbor_flap_states.webp" alt="OSPF Neighbor Flap">
+            <div class="image-caption">
+              OSPF state diagram detailing the continuous formation and destruction (flapping) of neighbor relationships.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="image-box">
+            <img src="images/ospf_corrected_router_ids.jpg" alt="OSPF Corrected RID">
+            <div class="image-caption">
+              OSPF LSDB becomes stable after each router is assigned a unique Router ID.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Practices -->
+    <div class="content-block">
+      <h2 class="section-title">Best Practices</h2>
+      <ul>
+        <li>Always manually assign Router IDs in production environments.</li>
+        <li>Use loopback interfaces for RID selection—they are more stable.</li>
+        <li>Avoid dynamic RID selection in virtualized deployments.</li>
+        <li>Plan Router ID assignments as part of IP addressing strategy.</li>
+        <li>Audit OSPF networks regularly for RID duplication.</li>
+      </ul>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="content-block">
+      <h2 class="section-title">Conclusion</h2>
+      <p>
+        Router ID conflicts in OSPF can silently disrupt routing operations and create hard-to-diagnose network issues.
+        By assigning and maintaining unique Router IDs across the network, administrators can ensure stable adjacencies,
+        accurate routing, and a healthy OSPF domain.
+      </p>
+    </div>
+
+    <!-- Related Concepts -->
+    <div class="content-block">
+      <h2 class="section-title">Related Concepts</h2>
+      <ul>
+        <li>OSPF neighbor states</li>
+        <li>Link-State Database (LSDB)</li>
+        <li>LSA Types and flooding</li>
+        <li>Loopback interface usage</li>
+        <li>OSPF area design and stability</li>
+      </ul>
+    </div>
+
+    <!-- Home Button -->
+    <div class="text-center">
+      <a href="index.html" class="btn btn-outline-primary btn-home">Home</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      &copy; 2025 KefoSoft Technologies. All rights reserved.
+    </div>
+            <style>
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 4.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+  </style>
+
+  </div>
+
+</body>
+</html>
